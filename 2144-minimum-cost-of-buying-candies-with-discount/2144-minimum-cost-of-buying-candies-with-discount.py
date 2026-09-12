@@ -1,12 +1,12 @@
 class Solution:
     def minimumCost(self, cost):
-
-        cost.sort(reverse=True)
-
-        total = 0
-
-        for i in range(len(cost)):
-            if i % 3 != 2:
-                total += cost[i]
-
-        return total
+        sumOfCost = sum(cost)
+        if (len(cost) < 3):
+            return sumOfCost
+        else:
+            cost.sort(reverse=True)
+            for i in range(2,len(cost),3):
+                sumOfCost -= cost[i]
+            return sumOfCost
+          
+             
