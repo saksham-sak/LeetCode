@@ -4,6 +4,5 @@ class Solution(object):
             return -1 
         else:
             for i in range(len(haystack)):
-                if needle[0] == haystack[i]:
-                    if haystack[i :i + len(needle)] == needle:
-                        return i
+                if haystack[i :i + len(needle)] == needle:
+                    return i
