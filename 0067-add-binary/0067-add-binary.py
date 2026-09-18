@@ -1,24 +1,22 @@
 class Solution(object):
     def addBinary(self, a, b):
-        stringSum = 0
-        stringNum = ""
-        for i in range(len(a)):
-            if a[i] == "1":
-                stringSum += 2**(len(a) - i - 1)
-        for i in range(len(b)):
-            if b[i] == "1":
-                stringSum += 2**(len(b) - i - 1)
+        lengthA = len(a) - 1
+        lengthB = len(b) - 1
+        carry = 0
+        arr = []
+
+        while lengthA >= 0 or lengthB >= 0 or carry:
+            total = carry
+            if lengthA >= 0:
+                total += int(a[lengthA])
+                lengthA -= 1
+
+            if lengthB >= 0:
+                total += int(b[lengthB])
+                lengthB -= 1 
+            
+            arr.append(str(total % 2))
+            carry = total // 2
 
 
-        while(stringSum > 0):
-            stringNum += str(stringSum % 2)
-            stringSum //= 2
-
-        if not stringNum:
-            return "0"
-        return stringNum[::-1]
-    
-        
-
-
-        
+        return "".join(arr[::-1])
