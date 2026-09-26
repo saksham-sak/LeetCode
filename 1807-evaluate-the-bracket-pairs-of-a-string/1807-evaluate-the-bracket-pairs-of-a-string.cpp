@@ -1,40 +1,41 @@
 class Solution {
 public:
     string evaluate(string s, vector<vector<string>>& knowledge) {
-        string newString;
 
-        unordered_map<string,string> mp;
+        unordered_map<string, string> mp;
 
-        for(auto arr : knowledge){
-            mp[arr[0]] = arr[1];
+        for(auto x : knowledge) {
+            mp[x[0]] = x[1];
         }
 
-        for(int i  = 0;i < s.size(); ){
-            if(s[i] == '('){
+        string ans = "";
 
-                string word;
-                i++;
+        for(int i = 0; i < s.size(); i++) {
 
-                while(s[i] != ')'){
-                    word += s[i];
-                    i++;
-                }
-                
-                if(mp.find(word) != mp.end()) {
-                    newString += mp[word];
-                }
-                else {
-                    newString += '?';
-                }
+            if(s[i] != '(') {
+                ans += s[i];
+                continue;
+            }
 
+            // '(' found
+            i++;
+
+            string key = "";
+
+            while(s[i] != ')') {
+                key += s[i];
                 i++;
             }
-            else{
-                newString += s[i];
-                i++;
+
+            // key found, now look in map
+            if(mp.count(key)) {
+                ans += mp[key];
+            }
+            else {
+                ans += '?';
             }
         }
 
-        return newString;
+        return ans;
     }
 };
