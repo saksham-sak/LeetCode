@@ -1,8 +1,11 @@
 class Solution(object):
     def singleNumber(self, nums):
-        sumOfnums = sum(nums)
-        newNums = list(set(nums))
-        sumofnew = sum(newNums) * 3
+        ones = 0
+        twos = 0
 
-        return (sumofnew - sumOfnums) / 2
+        for num in nums:
+            ones = (ones ^ num) & ~twos
+            twos = (twos ^ num) & ~ones
+
+        return ones
         
