@@ -2,21 +2,17 @@ class Solution {
 public:
     bool checkString(string s) {
 
-        int n = s.size();
-        
+        bool foundB = false;
 
-        for(int i = 0;i < n;i++){
+        for(int i = 0;i < s.size();i++){
             if(s[i] == 'b'){
-                for(int j = i;j < n;j++){
-                    if(s[j] == 'a'){
-                        return false;
-                    }
+                foundB = true;
+            }
 
-                    i++;
-                }
+            if(s[i] == 'a' && foundB){
+                return false;
             }
         }
-
 
 
         return true;
